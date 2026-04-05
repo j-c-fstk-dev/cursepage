@@ -17,6 +17,7 @@ import { useFormStatus } from 'react-dom';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -27,7 +28,7 @@ function SubmitButton() {
   );
 }
 
-export default function LoginPage() {
+function LoginContent() {
   const [state, formAction] = useActionState(login, undefined);
   const searchParams = useSearchParams();
   const successMessage = searchParams.get('message');
@@ -43,22 +44,22 @@ export default function LoginPage() {
       </CardHeader>
       <CardContent>
         {successMessage && (
-            <Alert variant="default" className="mb-4 bg-green-500/10 border-green-500/50 text-green-700">
-                <AlertCircle className="h-4 w-4 !text-green-700" />
-                <AlertTitle>Success</AlertTitle>
-                <AlertDescription>
-                    {successMessage}
-                </AlertDescription>
-            </Alert>
+          <Alert variant="default" className="mb-4 bg-green-500/10 border-green-500/50 text-green-700">
+            <AlertCircle className="h-4 w-4 !text-green-700" />
+            <AlertTitle>Success</AlertTitle>
+            <AlertDescription>
+              {successMessage}
+            </AlertDescription>
+          </Alert>
         )}
         {state?.message && (
-            <Alert variant="destructive" className="mb-4">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Login Failed</AlertTitle>
-                <AlertDescription>
-                    {state.message}
-                </AlertDescription>
-            </Alert>
+          <Alert variant="destructive" className="mb-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Login Failed</AlertTitle>
+            <AlertDescription>
+              {state.message}
+            </AlertDescription>
+          </Alert>
         )}
         <form action={formAction} className="grid gap-4">
           <div className="grid gap-2">
@@ -85,5 +86,13 @@ export default function LoginPage() {
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<Card className="w-full max-w-sm"><CardContent>Loading...</CardContent></Card>}>
+      <LoginContent />
+    </Suspense>
   );
 }
