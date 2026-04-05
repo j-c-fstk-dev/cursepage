@@ -40,6 +40,7 @@ export async function register(prevState: any, formData: FormData) {
       data: {
         email,
         password: hashedPassword,
+        isAuthorized: false,
       },
     });
 
