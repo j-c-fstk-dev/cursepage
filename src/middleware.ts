@@ -1,8 +1,9 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { getSession } from '@/lib/session';
+import { verifySession } from '@/lib/session';
 
 export async function middleware(request: NextRequest) {
-  const session = await getSession();
+  const cookie = request.cookies.get('session')?.value;
+  const session = await verifySession(cookie);
   const { pathname } = request.nextUrl;
 
   const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/register');

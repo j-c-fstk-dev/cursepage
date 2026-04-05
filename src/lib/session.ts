@@ -25,21 +25,23 @@ export async function createSession(payload: SessionPayload) {
   });
 }
 
-export async function getSession(): Promise<SessionPayload | null> {
-  const cookie = cookies().get(COOKIE_NAME)?.value;
-
-  if (!cookie) {
+export async function verifySession(token: string | undefined): Promise<SessionPayload | null> {
+  if (!token) {
     return null;
   }
-
   try {
-    const { payload } = await jwtVerify(cookie, encodedKey, {
+    const { payload } = await jwtVerify(token, encodedKey, {
       algorithms: ['HS256'],
     });
     return payload as SessionPayload;
   } catch (error) {
     return null;
   }
+}
+
+export async function getSession(): Promise<SessionPayload | null> {
+  const cookie = cookies().get(COOKIE_NAME)?.value;
+  return await verifySession(cookie);
 }
 
 export async function deleteSession() {
