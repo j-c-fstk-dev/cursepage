@@ -23,7 +23,7 @@ export default async function CursoPage() {
   }
 
   if (!session.isAuthorized) {
-    redirect('/acesso-negado');
+    redirect('/vendas');
   }
 
   const lessons = await getLessons();

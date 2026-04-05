@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { hashPassword, verifyPassword } from '@/lib/password';
 import { createSession, deleteSession } from '@/lib/session';
 import prisma from '@/lib/prisma';
+import { whitelist } from '@/lib/whitelist';
 
 const registerSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -30,17 +31,19 @@ export async function register(prevState: any, formData: FormData) {
   const { email, password } = validatedFields.data;
 
   try {
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
     if (existingUser) {
       return { message: 'User with this email already exists.' };
     }
 
+    const isWhitelisted = whitelist.includes(email.toLowerCase());
+
     const hashedPassword = await hashPassword(password);
     await prisma.user.create({
       data: {
-        email,
+        email: email.toLowerCase(),
         password: hashedPassword,
-        isAuthorized: false,
+        isAuthorized: isWhitelisted,
       },
     });
 
@@ -63,7 +66,7 @@ export async function login(prevState: any, formData: FormData) {
   const { email, password } = validatedFields.data;
 
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
     if (!user) {
       return { message: 'Invalid email or password.' };
     }
