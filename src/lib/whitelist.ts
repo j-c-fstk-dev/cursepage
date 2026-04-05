@@ -6,4 +6,5 @@
 export const whitelist: string[] = [
   // 'jane.doe@example.com',
   // 'john.smith@example.com',
+  'dev.jorge.c@gmail.com'
 ].map(email => email.toLowerCase());

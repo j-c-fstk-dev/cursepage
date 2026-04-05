@@ -11,7 +11,11 @@ export async function middleware(request: NextRequest) {
 
   if (isAuthPage) {
     if (session) {
-      return NextResponse.redirect(new URL('/curso', request.url));
+      if (session.isAuthorized) {
+        return NextResponse.redirect(new URL('/curso', request.url));
+      } else {
+        return NextResponse.redirect(new URL('/vendas', request.url));
+      }
     }
     return NextResponse.next();
   }
@@ -21,11 +25,14 @@ export async function middleware(request: NextRequest) {
       const from = pathname;
       return NextResponse.redirect(new URL(`/login?from=${from}`, request.url));
     }
+    if (!session.isAuthorized) {
+      return NextResponse.redirect(new URL('/vendas', request.url));
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/curso/:path*', '/login', '/register'],
+  matcher: ['/curso/:path*', '/login', '/register', '/vendas'],
 };
