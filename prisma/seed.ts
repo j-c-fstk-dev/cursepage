@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -35,6 +36,24 @@ async function main() {
     })
     console.log(`Created lesson with id: ${newLesson.id}`)
   }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash('123456', salt);
+
+  await prisma.user.upsert({
+    where: { email: 'test@user.com' },
+    update: {
+      password: hashedPassword,
+      isAuthorized: true,
+    },
+    create: {
+      email: 'test@user.com',
+      password: hashedPassword,
+      isAuthorized: true,
+    },
+  });
+  console.log(`Created or updated user: test@user.com`);
+
   console.log(`Seeding finished.`)
 }
 
