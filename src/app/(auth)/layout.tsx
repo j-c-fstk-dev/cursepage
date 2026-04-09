@@ -1,6 +1,5 @@
-import { Terminal } from "lucide-react";
+import { Sprout } from "lucide-react";
 import type React from "react";
-
 export default function AuthLayout({
   children,
 }: {
@@ -9,8 +8,8 @@ export default function AuthLayout({
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
       <div className="mb-8 flex items-center gap-2 text-primary">
-        <Terminal className="h-8 w-8" />
-        <h1 className="text-2xl font-bold tracking-tight text-white">DevTube Academy</h1>
+        <Sprout className="h-8 w-8" />
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Brincando em Família</h1>
       </div>
       {children}
     </div>

@@ -32,20 +32,20 @@ export default function RegisterPage() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Sign Up</CardTitle>
+        <CardTitle className="text-xl">Criar Conta</CardTitle>
         <CardDescription>
-          Enter your information to create an account
+          Crie sua conta para acessar o curso (após compra)
         </CardDescription>
       </CardHeader>
       <CardContent>
         {state?.message && (
-            <Alert variant="destructive" className="mb-4">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Registration Failed</AlertTitle>
-                <AlertDescription>
-                    {state.message}
-                </AlertDescription>
-            </Alert>
+          <Alert variant="destructive" className="mb-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Erro no Registro</AlertTitle>
+            <AlertDescription>
+              {state.message}
+            </AlertDescription>
+          </Alert>
         )}
         <form action={formAction} className="grid gap-4">
           <div className="grid gap-2">
@@ -54,22 +54,22 @@ export default function RegisterPage() {
               id="email"
               type="email"
               name="email"
-              placeholder="m@example.com"
+              placeholder="seu@email.com"
               required
             />
             {state?.error?.email && <p className="text-destructive text-xs">{state.error.email[0]}</p>}
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Senha</Label>
             <Input id="password" type="password" name="password" required />
             {state?.error?.password && <p className="text-destructive text-xs">{state.error.password[0]}</p>}
           </div>
           <SubmitButton />
         </form>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{' '}
+          Já tem uma conta?{' '}
           <Link href="/login" className="underline text-primary">
-            Sign in
+            Faça login
           </Link>
         </div>
       </CardContent>

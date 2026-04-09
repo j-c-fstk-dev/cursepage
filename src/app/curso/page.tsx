@@ -3,8 +3,14 @@ import { redirect } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import type { Lesson, User } from '@/lib/definitions';
 import CourseClient from './CourseClient';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Faça sua Boneca Waldorf - Curso em Vídeo',
+  description: 'Aprenda passo a passo a criar bonecas Waldorf artesanais com materiais naturais.',
+};
 
 async function getLessons(): Promise<Lesson[]> {
   const lessons = await prisma.lesson.findMany({
@@ -30,8 +36,8 @@ export default async function CursoPage() {
 
   if (lessons.length === 0) {
     return (
-      <div className="flex h-screen items-center justify-center text-white">
-        No lessons available yet.
+      <div className="flex h-screen items-center justify-center text-foreground">
+        Nenhuma aula disponível ainda.
       </div>
     );
   }

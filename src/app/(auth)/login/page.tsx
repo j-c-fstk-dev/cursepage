@@ -33,20 +33,19 @@ function LoginContent() {
   const searchParams = useSearchParams();
   const successMessage = searchParams.get('message');
 
-
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardTitle className="text-2xl">Acessar Curso</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account.
+          Digite seu email e senha para acessar o curso de Boneca Waldorf
         </CardDescription>
       </CardHeader>
       <CardContent>
         {successMessage && (
           <Alert variant="default" className="mb-4 bg-green-500/10 border-green-500/50 text-green-700">
             <AlertCircle className="h-4 w-4 !text-green-700" />
-            <AlertTitle>Success</AlertTitle>
+            <AlertTitle>Sucesso!</AlertTitle>
             <AlertDescription>
               {successMessage}
             </AlertDescription>
@@ -55,7 +54,7 @@ function LoginContent() {
         {state?.message && (
           <Alert variant="destructive" className="mb-4">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Login Failed</AlertTitle>
+            <AlertTitle>Erro ao Fazer Login</AlertTitle>
             <AlertDescription>
               {state.message}
             </AlertDescription>
@@ -68,20 +67,20 @@ function LoginContent() {
               id="email"
               type="email"
               name="email"
-              placeholder="m@example.com"
+              placeholder="seu@email.com"
               required
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Senha</Label>
             <Input id="password" type="password" name="password" required />
           </div>
           <SubmitButton />
         </form>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{' '}
+          Ainda não tem acesso?{' '}
           <Link href="/register" className="underline text-primary">
-            Sign up
+            Registre-se aqui
           </Link>
         </div>
       </CardContent>

@@ -3,8 +3,14 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'DevTube Academy',
-  description: 'A simple online course platform.',
+  title: 'Brincando em Família - Curso Boneca Waldorf',
+  description: 'Aprenda a fazer bonecas Waldorf artesanais. Um curso completo em vídeo com técnicas, materiais naturais e muito amor.',
+  keywords: 'boneca waldorf, curso waldorf, brinquedo waldorf, educação waldorf',
+  openGraph: {
+    title: 'Brincando em Família - Faça sua Boneca Waldorf',
+    description: 'Curso em vídeo completo para aprender a criar bonecas Waldorf artesanalmente',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

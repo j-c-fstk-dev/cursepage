@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { LogOut, Terminal, User } from 'lucide-react';
+import { LogOut, Sprout } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 export function CourseHeader({ userEmail }: { userEmail: string }) {
@@ -17,8 +17,8 @@ export function CourseHeader({ userEmail }: { userEmail: string }) {
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-card px-6">
       <div className="flex items-center gap-2">
-        <Terminal className="h-6 w-6 text-primary" />
-        <h1 className="text-lg font-semibold tracking-tight">DevTube Academy</h1>
+        <Sprout className="h-6 w-6 text-primary" />
+        <h1 className="text-lg font-semibold tracking-tight text-foreground">Faça sua Boneca Waldorf</h1>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
