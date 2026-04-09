@@ -48,7 +48,7 @@ function CourseComponent({ lessons, user }: { lessons: Lesson[]; user: User }) {
   }
 
   return (
-    <div className="flex h-screen bg-zinc-900 text-white">
+    <div className="flex h-screen bg-card text-foreground">
       <Sidebar
         lessons={lessons}
         currentLessonId={currentLesson.id}
@@ -57,7 +57,7 @@ function CourseComponent({ lessons, user }: { lessons: Lesson[]; user: User }) {
       <main className="flex-1 flex flex-col overflow-hidden">
         <CourseHeader userEmail={user.email} />
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          <div className="flex-1 flex flex-col overflow-y-auto bg-zinc-800">
+          <div className="flex-1 flex flex-col overflow-y-auto bg-background">
             <VideoPlayer youtubeVideoId={currentLesson.youtubeVideoId} />
             <LessonContent
               title={currentLesson.title}
@@ -74,9 +74,9 @@ function CourseComponent({ lessons, user }: { lessons: Lesson[]; user: User }) {
 
 
 export default function CourseClient({ lessons, user }: { lessons: Lesson[]; user: User }) {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <CourseComponent lessons={lessons} user={user} />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CourseComponent lessons={lessons} user={user} />
+    </Suspense>
+  )
 }

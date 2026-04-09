@@ -26,7 +26,7 @@ export function Sidebar({
                 'w-full flex items-center gap-3 rounded-lg p-2 text-left text-sm transition-colors',
                 currentLessonId === lesson.id
                   ? 'bg-primary/10 text-primary font-semibold'
-                  : 'hover:bg-zinc-800'
+                  : 'hover:bg-muted'
               )}
             >
               <div className='relative w-16 h-9 rounded-md overflow-hidden shrink-0'>
@@ -38,7 +38,7 @@ export function Sidebar({
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                    <PlayCircle className="w-6 h-6 text-white/80"/>
+                  <PlayCircle className="w-6 h-6 text-white/80" />
                 </div>
               </div>
               <div className="flex-1">

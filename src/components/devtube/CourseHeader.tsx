@@ -15,7 +15,7 @@ export function CourseHeader({ userEmail }: { userEmail: string }) {
   const getInitials = (email: string) => email.charAt(0).toUpperCase();
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between border-b border-zinc-700 bg-zinc-900 px-6">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-card px-6">
       <div className="flex items-center gap-2">
         <Terminal className="h-6 w-6 text-primary" />
         <h1 className="text-lg font-semibold tracking-tight">DevTube Academy</h1>
@@ -43,10 +43,10 @@ export function CourseHeader({ userEmail }: { userEmail: string }) {
           <DropdownMenuSeparator />
           <form action={logout}>
             <DropdownMenuItem asChild>
-                <button type="submit" className="w-full">
+              <button type="submit" className="w-full">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
-                </button>
+              </button>
             </DropdownMenuItem>
           </form>
         </DropdownMenuContent>
